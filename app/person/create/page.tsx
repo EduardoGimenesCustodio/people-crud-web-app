@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { Button, DatePicker, DatePickerProps, Form, Input } from "antd";
+import { Button, DatePicker, Form, Input, message, Breadcrumb } from "antd";
 import type { FormInstance } from "antd/es/form";
 import axios from "axios";
+import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 
 const layout = {
   labelCol: { span: 8 },
@@ -17,6 +18,8 @@ const tailLayout = {
 const dateFormat = "DD/MM/YYYY";
 
 const CreatePerson: React.FC = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+
   const formRef = React.useRef<FormInstance>(null);
 
   const onFinish = async (values: any) => {
@@ -27,22 +30,57 @@ const CreatePerson: React.FC = () => {
       funcao: values.funcao ? values.funcao : null,
     };
 
-    const res = await axios({
+    await axios({
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_HOST}person`,
+      url: `${process.env.NEXT_PUBLIC_API_HOST}/person`,
       data: requestBody,
-    });
-
-    console.log(res.status);
+    })
+      .then(() => {
+        success();
+      })
+      .catch(() => {
+        error();
+      });
   };
 
   const onReset = () => {
     formRef.current?.resetFields();
   };
 
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "Pessoa cadastrada com sucesso",
+    });
+  };
+
+  const error = () => {
+    messageApi.open({
+      type: "error",
+      content: "Erro ao cadastrar pessoa",
+    });
+  };
+
   return (
     <div>
-      <h1>Cadastrar Pessoa</h1>
+      {contextHolder}
+      <Breadcrumb
+        items={[
+          {
+            href: "/",
+            title: <HomeOutlined />,
+          },
+          {
+            href: "",
+            title: (
+              <>
+                <UserOutlined />
+                <span>Cadastrar Pessoa</span>
+              </>
+            ),
+          },
+        ]}
+      />
 
       <Form
         {...layout}
