@@ -27,7 +27,7 @@ const CreatePerson: React.FC = () => {
       ...values,
       data_nascimento: values.data_nascimento.toISOString().substring(0, 10),
       data_admissao: values.data_admissao.toISOString().substring(0, 10),
-      funcao: values.funcao ? values.funcao : null,
+      funcao: values.funcao ? values.funcao : undefined,
     };
 
     await axios({
