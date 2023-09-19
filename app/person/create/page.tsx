@@ -18,8 +18,6 @@ const tailLayout = {
 const dateFormat = "DD/MM/YYYY";
 
 const CreatePerson: React.FC = () => {
-  const [messageApi, contextHolder] = message.useMessage();
-
   const formRef = React.useRef<FormInstance>(null);
 
   const onFinish = async (values: any) => {
@@ -48,22 +46,15 @@ const CreatePerson: React.FC = () => {
   };
 
   const success = () => {
-    messageApi.open({
-      type: "success",
-      content: "Pessoa cadastrada com sucesso",
-    });
+    message.success("Pessoa cadastrada com sucesso");
   };
 
   const error = () => {
-    messageApi.open({
-      type: "error",
-      content: "Erro ao cadastrar pessoa",
-    });
+    message.error("Erro ao cadastrar pessoa");
   };
 
   return (
     <div>
-      {contextHolder}
       <Breadcrumb
         items={[
           {

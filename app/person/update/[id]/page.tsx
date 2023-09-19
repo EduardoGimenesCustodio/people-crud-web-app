@@ -35,8 +35,6 @@ const UpdatePerson: React.FC = () => {
     funcao: undefined,
   };
 
-  const [messageApi, contextHolder] = message.useMessage();
-
   const formRef = React.useRef<FormInstance>(null);
 
   const onFinish = async (values: any) => {
@@ -90,29 +88,19 @@ const UpdatePerson: React.FC = () => {
   }, [form, initialValues]);
 
   const success = () => {
-    messageApi.open({
-      type: "success",
-      content: "Pessoa atualizada com sucesso",
-    });
+    message.success("Pessoa atualizada com sucesso");
   };
 
   const error = () => {
-    messageApi.open({
-      type: "error",
-      content: "Erro ao atualizar pessoa",
-    });
+    message.error("Erro ao atualizar pessoa");
   };
 
   const personNotFound = () => {
-    messageApi.open({
-      type: "error",
-      content: "Pessoa não encontrada",
-    });
+    message.error("Pessoa não encontrada");
   };
 
   return (
     <div>
-      {contextHolder}
       <Breadcrumb
         items={[
           {
@@ -130,8 +118,6 @@ const UpdatePerson: React.FC = () => {
           },
         ]}
       />
-
-      <h1>{initialValues.nome}</h1>
 
       <Form
         {...layout}
