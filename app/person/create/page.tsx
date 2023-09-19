@@ -1,7 +1,15 @@
 "use client";
 
 import React from "react";
-import { Button, DatePicker, Form, Input, message, Breadcrumb } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  message,
+  Breadcrumb,
+  Space,
+} from "antd";
 import type { FormInstance } from "antd/es/form";
 import axios from "axios";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
@@ -118,12 +126,14 @@ const CreatePerson: React.FC = () => {
         </Form.Item>
 
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
-            Cadastrar
-          </Button>
-          <Button htmlType="button" onClick={onReset}>
-            Limpar
-          </Button>
+          <Space size="middle">
+            <Button type="primary" htmlType="submit">
+              Cadastrar
+            </Button>
+            <Button htmlType="button" onClick={onReset}>
+              Limpar
+            </Button>
+          </Space>
         </Form.Item>
       </Form>
     </div>

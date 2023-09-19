@@ -9,6 +9,7 @@ import {
   message,
   Breadcrumb,
   Popconfirm,
+  Space,
 } from "antd";
 import type { FormInstance } from "antd/es/form";
 import axios from "axios";
@@ -161,23 +162,25 @@ const UpdatePerson: React.FC = () => {
         </Form.Item>
 
         <Form.Item {...tailLayout}>
-          <Button
-            type="primary"
-            htmlType="button"
-            href={`/person/update/${id_pessoa}`}
-          >
-            Editar
-          </Button>
-          <Popconfirm
-            title="Excluir pessoa"
-            description="Tem certeza de que deseja excluir esta pessoa?"
-            onConfirm={deletePerson}
-            onCancel={cancel}
-            okText="Sim"
-            cancelText="Não"
-          >
-            <Button htmlType="button">Excluir</Button>
-          </Popconfirm>
+          <Space size="middle">
+            <Button
+              type="primary"
+              htmlType="button"
+              href={`/person/update/${id_pessoa}`}
+            >
+              Editar
+            </Button>
+            <Popconfirm
+              title="Excluir pessoa"
+              description="Tem certeza de que deseja excluir esta pessoa?"
+              onConfirm={deletePerson}
+              onCancel={cancel}
+              okText="Sim"
+              cancelText="Não"
+            >
+              <Button htmlType="button">Excluir</Button>
+            </Popconfirm>
+          </Space>
         </Form.Item>
       </Form>
     </div>
