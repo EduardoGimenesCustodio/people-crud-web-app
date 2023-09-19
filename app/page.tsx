@@ -17,13 +17,18 @@ const columns: ColumnsType<DataType> = [
     title: "Nome",
     dataIndex: "nome",
     key: "nome",
-    render: (text) => <a>{text}</a>,
+    render: (text: string) => <a>{text.split(" ")[0]}</a>,
   },
   {
     title: "Data de admissão",
     dataIndex: "data_admissao",
     key: "data_admissao",
-    render: (date) => <a>{date}</a>,
+    render: (date: string) => (
+      <a>{`${date.substring(8, 10)}/${date.substring(5, 7)}/${date.substring(
+        0,
+        4
+      )}`}</a>
+    ),
   },
   {
     title: "Ações",
@@ -32,7 +37,6 @@ const columns: ColumnsType<DataType> = [
       <Space size="middle">
         <a href={`/person/read/${record.id_pessoa}`}>Ver mais</a>
         <a href={`/person/update/${record.id_pessoa}`}>Editar</a>
-        <a>Excluir</a>
       </Space>
     ),
   },

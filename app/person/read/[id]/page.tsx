@@ -14,7 +14,7 @@ import {
 import type { FormInstance } from "antd/es/form";
 import axios from "axios";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
-import { redirect, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import dayjs from "dayjs";
 
 const layout = {
